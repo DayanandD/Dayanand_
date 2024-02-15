@@ -571,12 +571,12 @@ return false;
     <div class="container">
       <h3>Dayanand Dongare</h3>
       <div class="social-links">
-        <a href="https://twitter.com/i/flow/login" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/login/" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.instagram.com/login/" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://www.google-plus.com/login/" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="https://www.linkedin.com/login/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://www.github.com/login/" class="Git"><i class="bx bxl-git"></i></a>
+        <a href="https://twitter.com/i/flow/login" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100069414171713"  target="_blank"class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/login/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.google-plus.com/login/" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="https://www.linkedin.com/login/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://github.com/DayanandD" target="_blank" class="Git"><i class="bx bxl-git"></i></a>
       </div>
       <div class="copyright">
         &copy; Copyright <strong><span>@Dayanand</span></strong>. All Rights Reserved
@@ -601,55 +601,35 @@ return false;
 
   <script src="assets/js/main.js"></script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="server.js"></script>
 
-
-<script>
-  function send_email(){
-  Email.send({
-    Host : "smtp.gmail.com",
-    Username : "dayananddongarer@gmail.com",
-    Password : "Daya@2796",
-    // method: 'POST',
-    cache: 'no-cache',
-    To : 'dayananddongare8@gmail.com',
-    From : document.getElementById("email").value,
-    Subject : "New Email",
-    Body : "And this is the body",
-    // headers: {
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Content-Type': 'application/json'
-    // }
-}).then(
-  message => console.log(message)
-);
-}
-
-fetch('https://mail.google.com/mail/u/0/#inbox')
-    .then(reponseBis => reponseBis.json())
-    .then(dataBis => console.log(dataBis));
-
-    try {
-  $.post('http://localhost:8080/data', {}, function(res) {}).fail(function() {
-      alert("Unknown Error Occured. Server response not received.");
-  });
-} catch (e) {
-  console.log('catch', e);
-}
-
-// const send_email = {
-//       Host: smtp.gmail.com,
-//       Username: USERNAME,
-//       Password: PASSWORD,
-//       To: DEV_MAIL,
-//       From: FROM,
-//       Subject: `${subject} ${name}`,
-//       Body: emailBody,
-// };
-
-// Email.send(send_email).then((message) => {
-//       if (message == "OK") return onSuccess();
-// });
-</script>  
+  <script>
+    function sendEmail() {
+      const formData = {
+        email: document.getElementById("email").value,
+        // Other form data fields
+      };
+  
+      fetch('/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Email sent successfully");
+        } else {
+          throw new Error('Failed to send email');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending email:', error);
+      });
+    }
+  </script>
+  
 
 
 

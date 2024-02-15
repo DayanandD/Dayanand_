@@ -1,0 +1,16 @@
+{
+  "name": "dayanand_",
+  "version": "1.0.0",
+  "description": "\u0000#\u0000 \u0000D\u0000a\u0000y\u0000a\u0000n\u0000a\u0000n\u0000d\u0000_\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.9"
+  }
+}
