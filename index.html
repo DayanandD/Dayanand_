@@ -24,8 +24,16 @@
 
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
-
-<body>
+  
+<script type="text/javascript"> 
+function disableRightClick() 
+{ 
+alert("Sorry, right click is not allowed !!"); 
+return false; 
+} 
+</script>
+  
+<body oncontextmenu=" return disableRightClick();">
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
   <header id="header" class="d-flex flex-column justify-content-center">
 
