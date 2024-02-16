@@ -24,6 +24,7 @@
 
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
+<script src="submit.php"></script>
   
 <script type="text/javascript"> 
 function disableRightClick() 
@@ -535,7 +536,6 @@ return false;
           </div>
 
           <div class="col-lg-8 mt-5 mt-lg-0">
-
             <form action="http://localhost:8000/" method="post" enctype="multipart/form-data" role="form" onsubmit="send_email()" reset(); return false; class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -558,7 +558,22 @@ return false;
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
-
+<script src="contactus.js"></script>
+            <!-- <div class="container">
+              <form id="contactForm">
+                <h2>Contact Us</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Submit</button>
+              </form>
+              <div id="response"></div>
+            </div> -->
+          
+            <script src="script.js"></script>
           </div>
 
         </div>
