@@ -10,7 +10,7 @@ document.getElementById("contactForm").addEventListener("submit", function(event
     formData.append("email", email);
     formData.append("message", message);
   
-    fetch("submit.php", {
+    fetch("https://main.d1j5edzp5c3rgz.amplifyapp.com/submitForm", {
       method: "POST",
       body: formData
     })
