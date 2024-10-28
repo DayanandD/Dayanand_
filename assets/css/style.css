@@ -1219,3 +1219,10 @@ section {
 #footer .credits {
   font-size: 13px;
 }
+
+.profile-bg-banner{
+  background-image: url(../../assets/profile/bg-3.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
