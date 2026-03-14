@@ -2,10 +2,10 @@ import { useTypewriter } from "../../hooks/index.js";
 import { ROLES, CONTACT } from "../../data/index.js";
 
 const STATS = [
-  { n: "4+",      l: "Yrs Experience"   },
-  { n: "0.187ms", l: "API Response"     },
-  { n: "2×",      l: "Employee Month"   },
-  { n: "99.9%",   l: "Uptime"           },
+  { n: "4+",  l: "Years Experience" },
+  { n: "50+", l: "Projects Built" },
+  { n: "20+", l: "Technologies Used" },
+  { n: "10+", l: "Clients Served" },
 ];
 
 /* Floating particle — pure CSS, no library */
