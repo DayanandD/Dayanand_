@@ -1,0 +1,173 @@
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ── Custom Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── CSS Custom Properties — Dark (default) ────────────────────────────────── */
+:root {
+  --bg:            #0a0a0f;
+  --card-bg:       #111118;
+  --section-alt:   #0d0d14;
+  --card-hover:    #16161f;
+
+  --text-primary:  #f0f0f5;
+  --text-muted:    #8b8ba0;
+  --text-subtle:   #55556a;
+
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --accent:        #6366f1;
+  --accent-hover:  #818cf8;
+  --accent-subtle: rgba(99, 102, 241, 0.1);
+
+  --tag-bg:        rgba(255, 255, 255, 0.05);
+  --grid-line:     rgba(255, 255, 255, 0.04);
+
+  --nav-bg:        rgba(10, 10, 15, 0.85);
+
+  /* Project accent colors */
+  --project-purple: #6366f1;
+  --project-blue:   #0ea5e9;
+  --project-green:  #10b981;
+  --project-amber:  #f59e0b;
+
+  /* Spacing scale */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+  --space-3xl: 100px;
+
+  /* Border radius */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-full: 9999px;
+
+  /* Section padding */
+  --section-px: clamp(20px, 6vw, 80px);
+  --section-py: 100px;
+
+  /* Max widths */
+  --max-content: 900px;
+  --max-wide:    1100px;
+}
+
+/* ── Light Theme ───────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:            #fafafa;
+  --card-bg:       #ffffff;
+  --section-alt:   #f4f4f8;
+  --card-hover:    #f8f8fc;
+
+  --text-primary:  #0a0a0f;
+  --text-muted:    #6b6b80;
+  --text-subtle:   #9999b0;
+
+  --border:        rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+
+  --accent:        #4f52e8;
+  --accent-hover:  #6366f1;
+  --accent-subtle: rgba(79, 82, 232, 0.08);
+
+  --tag-bg:        rgba(0, 0, 0, 0.04);
+  --grid-line:     rgba(0, 0, 0, 0.05);
+
+  --nav-bg:        rgba(250, 250, 250, 0.85);
+}
+
+/* ── Typography Helpers ────────────────────────────────────────────────────── */
+.font-display {
+  font-family: "Syne", sans-serif;
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ── Focus Styles (accessibility) ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent-subtle);
+  color: var(--accent);
+}

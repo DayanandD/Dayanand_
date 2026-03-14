@@ -1,0 +1,127 @@
+export const PROJECTS = [
+  {
+    id: 1,
+    title: "PinChecks",
+    subtitle: "UK Healthcare Subscription Platform",
+    description:
+      "Enterprise-grade healthcare subscription management platform for a UK-based provider. Manages customizable healthcare service packages and their entire lifecycle, with admin dashboards and automated notifications.",
+    tags: [".NET 8", "Clean Architecture", "ReactJS", "Redux Toolkit", "Material UI", "PostgreSQL", "JWT", "Dapper", "Hangfire", "Serilog"],
+    accent: "#6366f1",
+    highlights: [
+      "REST APIs with 0.187ms average response time",
+      "JWT + RBAC — zero security breaches achieved",
+      "Real-time analytics dashboards with charts",
+      "Hangfire background jobs for subscription alerts",
+      "Employee of the Month award — June 2025",
+    ],
+    github: null,
+    live: null,
+    period: "Mar 2025 – Aug 2025",
+  },
+  {
+    id: 2,
+    title: "Locker Management System",
+    subtitle: "In-house enterprise tool — IMS Global",
+    description:
+      "Internal platform to manage employee locker assignments, track vacancy and maintenance status, and manage damage charges. Built with SSO integration and delivered in Agile sprints on Zoho.",
+    tags: [".NET Core MVC", "Clean Architecture", "Razor Pages", "PostgreSQL", "Dapper", "SSO", "Serilog", "IIS"],
+    accent: "#0ea5e9",
+    highlights: [
+      "Clean Layered Architecture — 40% better scalability",
+      "SSO integration for employee authentication",
+      "Optimised PostgreSQL schemas for fast workflows",
+      "Delivered 15% ahead of schedule, 99.9% uptime",
+    ],
+    github: null,
+    live: null,
+    period: "Ongoing",
+  },
+  {
+    id: 3,
+    title: "EventHub",
+    subtitle: "Full-stack event management platform",
+    description:
+      "Complete event management solution with scheduling, poll system, QR-based attendee check-in, and real-time chat. Built on Clean Architecture with SignalR for live communication.",
+    tags: [".NET Core", "React", "SignalR", "SQL Server", "JWT", "Clean Architecture"],
+    accent: "#6366f1",
+    highlights: [
+      "Real-time chat via SignalR",
+      "QR-based attendee check-in",
+      "Poll & voting module",
+      "JWT authentication",
+    ],
+    github: "https://github.com/DayanandD",
+    live: null,
+  },
+  
+  {
+    id: 4,
+    title: "FuelDelivery",
+    subtitle: "On-Demand Fuel Delivery Platform",
+    description:
+      "Scalable on-demand platform connecting customers, licensed fuel suppliers, and delivery drivers through a real-time logistics system. Supports high concurrency, secure payments, and intelligent dispatching.",
+    tags: [".NET 8", "Clean Architecture", "PostgreSQL", "Dapper", "JWT", "RBAC", "AutoMapper", "Serilog", "REST APIs"],
+    accent: "#f59e0b",
+    highlights: [
+      "Separate modules for users, drivers, and admins",
+      "Real-time order management & fleet tracking",
+      "High-concurrency architecture design",
+      "Secure payment processing pipeline",
+    ],
+    github: "https://github.com/DayanandD",
+    live: null,
+    period: "Personal Project",
+  },
+  {
+    id: 5,
+    title: "QAsist",
+    subtitle: "AI-Powered QA Productivity Platform",
+    description:
+      "AI-powered QA productivity platform that automates test design, accelerates quality assurance workflows, and helps engineering teams ship reliable software faster. Multi-repo modular workspace.",
+    tags: [".NET 8", "Clean Architecture", "PostgreSQL", "Dapper", "JWT", "RBAC", "AutoMapper", "Serilog", "AI"],
+    accent: "#10b981",
+    highlights: [
+      "AI-driven automated test case design",
+      "Accelerates end-to-end QA workflows",
+      "Multi-repo modular architecture",
+      "Clean Architecture REST API backend",
+    ],
+    github: "https://github.com/DayanandD",
+    live: null,
+    period: "Personal Project",
+  },
+  {
+    id: 6,
+    title: "Gemini Clone",
+    subtitle: "AI-powered conversational interface",
+    description:
+      "Production-grade AI chat interface built with React and Google Generative AI SDK. Features streaming responses, conversation history, and markdown rendering.",
+    tags: ["React", "Google AI SDK", "JavaScript", "CSS"],
+    accent: "#0ea5e9",
+    highlights: [
+      "Streaming AI responses",
+      "Conversation history",
+      "Markdown rendering",
+      "Responsive UI",
+    ],
+    github: "https://github.com/DayanandD",
+    live: "https://66869b7b714ca4eedce1a6e5--taupe-nasturtium-4c4c1d.netlify.app/",
+  },
+  {
+    id: 7,
+    title: "Boilerplate Generator",
+    subtitle: "Multi-stack template scaffolding tool",
+    description:
+      "Developer productivity tool that generates application boilerplate for various technology stacks. Streamlines project initialization and enforces architectural best practices.",
+    tags: ["React", ".NET", "Clean Architecture", "CLI"],
+    accent: "#10b981",
+    highlights: [
+      "Multi-stack support",
+      "Architecture templates",
+      "Config auto-generation",
+      "CLI & Web UI",
+    ],
+    github: "https://github.com/DayanandD",
+    live: null,
+  },
+];
