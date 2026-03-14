@@ -1,157 +1,74 @@
-import { useIntersect } from "../../hooks/useIntersect.js";
-import FadeIn from "../ui/FadeIn.jsx";
-import SectionLabel from "../ui/SectionLabel.jsx";
-import SectionTitle from "../ui/SectionTitle.jsx";
-import Tag from "../ui/Tag.jsx";
+import { useInView } from "../../hooks/index.js";
+import { Fade, SectionHead } from "../ui/index.jsx";
 
-const CAPABILITY_CARDS = [
-  { icon: "⬡", label: "Backend",   desc: ".NET Core & Clean Architecture" },
-  { icon: "◈", label: "Frontend",  desc: "React & Modern CSS"             },
-  { icon: "◉", label: "Database",  desc: "SQL Server & EF Core"           },
-  { icon: "◎", label: "Real-time", desc: "SignalR & WebSockets"           },
+const CARDS = [
+  { icon: "⬡", c: "#7c6fff", t: "Backend",    s: ".NET 8 · Clean Architecture · REST APIs" },
+  { icon: "◈", c: "#00c8ff", t: "Frontend",   s: "React · Redux Toolkit · Material UI"     },
+  { icon: "◉", c: "#00e5a0", t: "Database",   s: "PostgreSQL · SQL Server · Dapper"        },
+  { icon: "◎", c: "#ffb547", t: "DevOps",     s: "IIS · Git · Zoho Sprints · Postman"     },
 ];
 
-const TRAITS = [
-  "Clean Architecture",
-  "SOLID Principles",
-  "Agile / Zoho Sprints",
-  "TDD",
-  "REST API Design",
-  "JWT + RBAC",
-  "IIS Deployment",
-  "Mentoring",
-];
+const BADGES = ["Clean Architecture", "SOLID Principles", "TDD", "Agile", "JWT + RBAC", "IIS Deployment", "Mentoring", "Code Reviews"];
 
 export default function About() {
-  const [ref, visible] = useIntersect(0.1);
+  const [ref, vis] = useInView(0.1);
 
   return (
-    <section
-      id="about"
-      ref={ref}
-      style={{ padding: "var(--section-py) var(--section-px)" }}
-    >
-      <div style={{ maxWidth: "var(--max-content)", margin: "0 auto" }}>
-        <FadeIn visible={visible}>
-          <SectionLabel>About Me</SectionLabel>
-        </FadeIn>
+    <section id="about" ref={ref} className="section">
+      <div className="wrap">
+        <SectionHead
+          eyebrow="About Me"
+          title={<>Engineering software that<br /><span className="grad">ships reliably</span></>}
+          vis={vis}
+        />
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: 64,
-            alignItems: "center",
-          }}
-        >
-          {/* Text column */}
-          <FadeIn delay={80} visible={visible}>
-            <SectionTitle>
-              Building software that
-              <br />
-              <span style={{ color: "var(--accent)" }}>actually scales</span>
-            </SectionTitle>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: 64, alignItems: "center" }}>
 
-            <p
-              style={{
-                fontSize: 15,
-                color: "var(--text-muted)",
-                lineHeight: 1.85,
-                marginBottom: 20,
-              }}
-            >
-              I'm a Full Stack Developer with 4+ years of experience designing scalable and
-              reliable web applications using{" "}
-              <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>
-                C#, ASP.NET, and .NET 8
-              </strong>{" "}
-              on the backend, with{" "}
-              <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>
-                React JS
-              </strong>{" "}
-              on the frontend. Capable of turning wireframes and design mock-ups into
-              responsive, high-quality, production-grade solutions.
+          {/* Text */}
+          <Fade vis={vis} delay={80}>
+            <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.9, marginBottom: 18 }}>
+              I'm a <strong style={{ color: "var(--text)" }}>Software Engineer</strong> with 4+ years building scalable enterprise applications. Currently at <strong style={{ color: "var(--accent)" }}>IMS Global, Ahmedabad</strong>, leading full-stack development and mentoring a team of 3 interns.
             </p>
-
-            <p
-              style={{
-                fontSize: 15,
-                color: "var(--text-muted)",
-                lineHeight: 1.85,
-                marginBottom: 32,
-              }}
-            >
-              Currently leading full-stack development at IMS Global — mentoring interns,
-              architecting Clean Architecture backends, and delivering enterprise projects
-              ahead of schedule with 99.9% uptime. Committed to contributing full-stack
-              expertise to teams and driving exceptional results.
+            <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.9, marginBottom: 18 }}>
+              My stack is <strong style={{ color: "var(--text)" }}>.NET 8 with Clean Architecture</strong> on the backend and <strong style={{ color: "var(--text)" }}>React + Redux</strong> on the frontend. I consistently deliver systems with sub-millisecond API responses and 99.9% production uptime.
             </p>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {TRAITS.map((t) => (
-                <Tag key={t}>{t}</Tag>
+            <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.9, marginBottom: 32 }}>
+              Promoted from <em>Jr. Software Engineer</em> to <em>Software Engineer</em> in 2025. Twice awarded <span style={{ color: "var(--accent)", fontWeight: 700 }}>Employee of the Month</span> for delivering critical production systems ahead of schedule.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+              {BADGES.map(b => (
+                <span key={b} style={{
+                  fontSize: 11, fontWeight: 600, padding: "4px 12px",
+                  borderRadius: 99, border: "1px solid var(--border2)",
+                  background: "var(--card)", color: "var(--text2)",
+                }}>{b}</span>
               ))}
             </div>
-          </FadeIn>
+          </Fade>
 
-          {/* Cards column */}
-          <FadeIn delay={200} visible={visible}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 14,
-              }}
-            >
-              {CAPABILITY_CARDS.map((c, i) => (
-                <div
-                  key={c.label}
-                  style={{
-                    padding: "20px 18px",
-                    borderRadius: "var(--radius-lg)",
-                    border: "1px solid var(--border)",
-                    background: "var(--card-bg)",
-                    opacity: visible ? 1 : 0,
-                    transform: visible ? "translateY(0)" : "translateY(16px)",
-                    transition: `opacity 0.5s ease ${280 + i * 80}ms, transform 0.5s ease ${280 + i * 80}ms`,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: 22,
-                      marginBottom: 10,
-                      color: "var(--accent)",
-                    }}
-                  >
-                    {c.icon}
-                  </div>
-                  <p
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "var(--text-primary)",
-                      margin: "0 0 5px",
-                      fontFamily: "'Syne', sans-serif",
-                    }}
-                  >
-                    {c.label}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: 12,
-                      color: "var(--text-muted)",
-                      margin: 0,
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {c.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
+          {/* Cards grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            {CARDS.map((c, i) => (
+              <Fade key={c.t} vis={vis} delay={200 + i * 90}>
+                <AboutCard c={c} />
+              </Fade>
+            ))}
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function AboutCard({ c }) {
+  return (
+    <div className="card" style={{ padding: "22px 18px" }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = c.c + "40"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.transform = "translateY(0)"; }}
+    >
+      <div style={{ fontSize: 26, marginBottom: 12, color: c.c }}>{c.icon}</div>
+      <p style={{ fontSize: 14, fontWeight: 700, color: "var(--text)", margin: "0 0 6px", letterSpacing: "-0.01em" }}>{c.t}</p>
+      <p style={{ fontSize: 11.5, color: "var(--text3)", margin: 0, lineHeight: 1.6 }}>{c.s}</p>
+    </div>
   );
 }

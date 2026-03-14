@@ -1,306 +1,267 @@
-
-import { useTypewriter } from "../../hooks/useTypewriter.js";
-
-const ROLES = [
-  "Full Stack Developer",
-  ".NET 8 + React Engineer",
-  "Clean Architecture Advocate",
-  "Software Developer",
-];
+import { useTypewriter } from "../../hooks/index.js";
+import { ROLES, CONTACT } from "../../data/index.js";
 
 const STATS = [
-  { n: "4+",  label: "Years Experience"   },
-   { n: "15+", label: "Projects Delivered" },
-  { n: "0.187ms", label: "Avg API Response" },
-  { n: "40%", label: "Backend Efficiency Gain" },
+  { n: "4+",      l: "Yrs Experience"   },
+  { n: "0.187ms", l: "API Response"     },
+  { n: "2×",      l: "Employee Month"   },
+  { n: "99.9%",   l: "Uptime"           },
 ];
 
-export default function Hero({ dark }) {
+/* Floating particle — pure CSS, no library */
+function Particle({ style }) {
+  return <div style={style} />;
+}
+
+export default function Hero() {
   const typed = useTypewriter(ROLES);
 
+  const particles = Array.from({ length: 28 }, (_, i) => {
+    const size    = 2 + Math.random() * 4;
+    const left    = Math.random() * 100;
+    const delay   = Math.random() * 12;
+    const dur     = 14 + Math.random() * 18;
+    const opacity = 0.08 + Math.random() * 0.22;
+    const isLine  = i % 5 === 0;
+    return {
+      position: "absolute",
+      left:     `${left}%`,
+      bottom:   "-20px",
+      width:    isLine ? `${1 + Math.random()}px` : `${size}px`,
+      height:   isLine ? `${40 + Math.random() * 60}px` : `${size}px`,
+      borderRadius: isLine ? "1px" : "50%",
+      background: i % 3 === 0 ? "var(--accent)" : i % 3 === 1 ? "var(--purple)" : "var(--green)",
+      opacity,
+      animation: `floatUp ${dur}s ${delay}s linear infinite`,
+      pointerEvents: "none",
+    };
+  });
+
+  const gridLines = Array.from({ length: 6 }, (_, i) => ({
+    position: "absolute",
+    left: `${(i + 1) * 16.6}%`,
+    top: 0, bottom: 0,
+    width: "1px",
+    background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.03) 30%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 70%, transparent)",
+    pointerEvents: "none",
+  }));
+
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        padding: "80px clamp(20px, 6vw, 80px) 60px",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Background grid */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(var(--grid-line) 1px, transparent 1px),
-            linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)
-          `,
-          backgroundSize: "64px 64px",
-          pointerEvents: "none",
-        }}
-      />
+    <section id="hero" style={{
+      minHeight: "100vh",
+      display: "flex", alignItems: "center",
+      padding: "90px clamp(20px,6vw,80px) 60px",
+      position: "relative", overflow: "hidden",
+    }}>
 
-      {/* Glow orb */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "10%",
-          right: "-10%",
-          width: 700,
-          height: 700,
-          borderRadius: "50%",
-          background: dark
-            ? "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 65%)"
-            : "radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }}
-      />
-      {/* Bottom-left orb */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          bottom: "5%",
-          left: "-8%",
-          width: 400,
-          height: 400,
-          borderRadius: "50%",
-          background: dark
-            ? "radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 65%)"
-            : "radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }}
-      />
+      {/* Particle keyframes */}
+      <style>{`
+        @keyframes floatUp {
+          0%   { transform: translateY(0) scale(1);   opacity: 0; }
+          10%  { opacity: 1; }
+          90%  { opacity: 1; }
+          100% { transform: translateY(-110vh) scale(0.3); opacity: 0; }
+        }
+        @keyframes rotateSlow {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes pulseGlow {
+          0%,100% { opacity: .5; transform: scale(1); }
+          50%     { opacity: .9; transform: scale(1.08); }
+        }
+        @keyframes driftX {
+          0%,100% { transform: translateX(0); }
+          50%     { transform: translateX(40px); }
+        }
+        @keyframes scanLine {
+          0%   { top: -2px; }
+          100% { top: 100%; }
+        }
+      `}</style>
 
-      {/* Content */}
-      <div style={{ maxWidth: 780, position: "relative", zIndex: 1 }}>
+      {/* ── Background layers ── */}
 
-        {/* Availability badge */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "6px 14px",
-            borderRadius: "var(--radius-full)",
-            border: "1px solid var(--border)",
-            background: "var(--card-bg)",
-            marginBottom: 36,
-            fontSize: 12,
-            fontWeight: 600,
-            color: "var(--text-muted)",
-            letterSpacing: "0.04em",
-          }}
-        >
-          <span
-            style={{
-              width: 7,
-              height: 7,
-              borderRadius: "50%",
-              background: "#10b981",
-              display: "inline-block",
-              animation: "pulse 2s ease-in-out infinite",
-            }}
-          />
-          Available for new opportunities
+      {/* Vertical grid lines */}
+      {gridLines.map((s, i) => <div key={i} aria-hidden style={s} />)}
+
+      {/* Floating particles */}
+      {particles.map((s, i) => <Particle key={i} style={s} />)}
+
+      {/* Primary glow orb — top right, pulses */}
+      <div aria-hidden style={{
+        position: "absolute", top: "-5%", right: "-10%", zIndex: 0,
+        width: 700, height: 700, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(0,200,255,0.10) 0%, rgba(0,200,255,0.04) 40%, transparent 70%)",
+        animation: "pulseGlow 6s ease-in-out infinite",
+        pointerEvents: "none",
+      }} />
+
+      {/* Secondary glow orb — bottom left, drifts */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: "-8%", left: "-12%", zIndex: 0,
+        width: 600, height: 600, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(124,111,255,0.10) 0%, rgba(124,111,255,0.04) 40%, transparent 70%)",
+        animation: "pulseGlow 8s ease-in-out 2s infinite, driftX 12s ease-in-out infinite",
+        pointerEvents: "none",
+      }} />
+
+      {/* Rotating ring — decorative */}
+      <div aria-hidden style={{
+        position: "absolute", top: "12%", right: "8%", zIndex: 0,
+        width: 320, height: 320,
+        border: "1px solid rgba(0,200,255,0.07)",
+        borderRadius: "50%",
+        animation: "rotateSlow 40s linear infinite",
+        pointerEvents: "none",
+      }}>
+        <div style={{
+          position: "absolute", top: -4, left: "50%", marginLeft: -4,
+          width: 8, height: 8, borderRadius: "50%",
+          background: "var(--accent)", opacity: 0.6,
+          boxShadow: "0 0 12px var(--accent)",
+        }} />
+      </div>
+
+      {/* Inner rotating ring */}
+      <div aria-hidden style={{
+        position: "absolute", top: "12%", right: "8%", zIndex: 0,
+        width: 200, height: 200,
+        marginTop: 60, marginRight: 60,
+        border: "1px solid rgba(124,111,255,0.08)",
+        borderRadius: "50%",
+        animation: "rotateSlow 25s linear reverse infinite",
+        pointerEvents: "none",
+      }}>
+        <div style={{
+          position: "absolute", bottom: -4, left: "50%", marginLeft: -4,
+          width: 6, height: 6, borderRadius: "50%",
+          background: "var(--purple)", opacity: 0.7,
+          boxShadow: "0 0 10px var(--purple)",
+        }} />
+      </div>
+
+      {/* Dot-grid overlay */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, zIndex: 0,
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)",
+        backgroundSize: "36px 36px",
+        pointerEvents: "none",
+      }} />
+
+      {/* Scan line */}
+      <div aria-hidden style={{
+        position: "absolute", left: 0, right: 0,
+        height: "2px",
+        background: "linear-gradient(90deg, transparent, rgba(0,200,255,0.08) 30%, rgba(0,200,255,0.15) 50%, rgba(0,200,255,0.08) 70%, transparent)",
+        animation: "scanLine 8s linear infinite",
+        zIndex: 0, pointerEvents: "none",
+      }} />
+
+      {/* ── Content ── */}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 860 }}>
+
+        {/* Available badge */}
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 9,
+          padding: "6px 16px", borderRadius: 99,
+          background: "rgba(0,229,160,0.08)",
+          border: "1px solid rgba(0,229,160,0.25)",
+          marginBottom: 38, fontSize: 12, fontWeight: 700,
+          color: "#00e5a0", letterSpacing: "0.05em",
+          animation: "fadeUp .6s ease both",
+        }}>
+          <span style={{
+            width: 7, height: 7, borderRadius: "50%",
+            background: "#00e5a0", display: "inline-block",
+            animation: "pulseDot 2s ease-in-out infinite",
+          }} />
+          Open to new opportunities
         </div>
 
+        {/* Greeting */}
+        <p style={{
+          fontSize: 15, color: "var(--text2)", marginBottom: 6,
+          fontFamily: "'JetBrains Mono', monospace",
+          animation: "fadeUp .6s ease .05s both",
+        }}>
+          Hi there, I'm
+        </p>
+
         {/* Name */}
-        <h1
-          style={{
-            fontSize: "clamp(44px, 7.5vw, 84px)",
-            fontWeight: 800,
-            letterSpacing: "-0.045em",
-            color: "var(--text-primary)",
-            lineHeight: 1.02,
-            margin: "0 0 20px",
-            fontFamily: "'Syne', sans-serif",
-          }}
-        >
-          Dayanand
-          <br />
-          <span style={{ color: "var(--accent)" }}>Dongare</span>
+        <h1 style={{
+          fontSize: "clamp(52px,8.5vw,96px)",
+          fontWeight: 900, letterSpacing: "-0.05em",
+          color: "var(--text)", lineHeight: 0.97,
+          margin: "0 0 20px",
+          animation: "fadeUp .6s ease .1s both",
+        }}>
+          Dayanand<br />
+          <span className="grad">Dongare</span>
         </h1>
 
-        {/* Typewriter role */}
-        <div
-          style={{
-            fontSize: "clamp(18px, 2.8vw, 28px)",
-            fontWeight: 500,
-            color: "var(--text-muted)",
-            marginBottom: 22,
-            fontFamily: "'Syne', sans-serif",
-            minHeight: 38,
-            display: "flex",
-            alignItems: "center",
-            gap: 0,
-          }}
-        >
+        {/* Typewriter */}
+        <div style={{
+          fontSize: "clamp(17px,2.4vw,24px)",
+          fontWeight: 600, color: "var(--text2)",
+          marginBottom: 26, minHeight: 34,
+          display: "flex", alignItems: "center",
+          animation: "fadeUp .6s ease .18s both",
+        }}>
+          <span style={{ color: "var(--accent)", marginRight: 10, fontFamily: "'JetBrains Mono', monospace" }}>&gt;</span>
           {typed}
-          <span
-            style={{
-              display: "inline-block",
-              width: 2,
-              height: "1.1em",
-              background: "var(--accent)",
-              marginLeft: 3,
-              verticalAlign: "middle",
-              animation: "blink 1s step-end infinite",
-            }}
-          />
+          <span style={{
+            display: "inline-block", width: 2, height: "1em",
+            background: "var(--accent)", marginLeft: 3,
+            verticalAlign: "middle", animation: "blink 1s step-end infinite",
+          }} />
         </div>
 
         {/* Tagline */}
-        <p
-          style={{
-            fontSize: "clamp(14px, 1.8vw, 16px)",
-            color: "var(--text-muted)",
-            lineHeight: 1.8,
-            maxWidth: 600,
-            margin: "0 0 44px",
-          }}
-        >
-          4+ years designing scalable and reliable web applications using{" "}
-          <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>
-            C#, ASP.NET &amp; .NET 8
-          </strong>{" "}
-          with Clean Architecture on the backend and{" "}
-          <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>
-            React JS
-          </strong>{" "}
-          on the frontend. Turning wireframes into high-performance, production-grade solutions.
+        <p style={{
+          fontSize: "clamp(14px,1.6vw,17px)",
+          color: "var(--text2)", lineHeight: 1.85,
+          maxWidth: 580, marginBottom: 46,
+          animation: "fadeUp .6s ease .25s both",
+        }}>
+          Building enterprise-grade applications with{" "}
+          <strong style={{ color: "var(--text)", fontWeight: 700 }}>.NET 8 & Clean Architecture</strong>{" "}
+          on the backend and{" "}
+          <strong style={{ color: "var(--text)", fontWeight: 700 }}>React</strong> on the frontend.{" "}
+          <span style={{ color: "var(--accent)", fontWeight: 700 }}>2× Employee of the Month</span> at IMS Global.
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            style={{
-              padding: "12px 24px",
-              borderRadius: "var(--radius-md)",
-              background: "var(--accent)",
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: 14,
-              textDecoration: "none",
-              letterSpacing: "0.01em",
-              transition: "opacity 0.2s, transform 0.2s",
-              display: "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = "0.85";
-              e.currentTarget.style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = "1";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            View Projects →
-          </a>
-
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            style={{
-              padding: "12px 24px",
-              borderRadius: "var(--radius-md)",
-              border: "1px solid var(--border)",
-              background: "var(--card-bg)",
-              color: "var(--text-primary)",
-              fontWeight: 600,
-              fontSize: 14,
-              textDecoration: "none",
-              letterSpacing: "0.01em",
-              transition: "border-color 0.2s, transform 0.2s",
-              display: "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "var(--accent)";
-              e.currentTarget.style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            Get in Touch
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/dayanand-dongare-337a29252/"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              padding: "12px 24px",
-              borderRadius: "var(--radius-md)",
-              border: "1px solid var(--border)",
-              background: "var(--card-bg)",
-              color: "var(--text-muted)",
-              fontWeight: 600,
-              fontSize: 14,
-              textDecoration: "none",
-              transition: "border-color 0.2s, color 0.2s",
-              display: "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#0a66c2";
-              e.currentTarget.style.color = "#0a66c2";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--text-muted)";
-            }}
-          >
-            LinkedIn ↗
-          </a>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 70, animation: "fadeUp .6s ease .32s both" }}>
+          <a href="#projects"
+            onClick={e => { e.preventDefault(); document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="btn btn-solid">View Projects →</a>
+          <a href="#contact"
+            onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="btn btn-ghost">Get in Touch</a>
+          <a href={CONTACT.github} target="_blank" rel="noreferrer" className="btn btn-ghost">GitHub ↗</a>
         </div>
 
-        {/* Stats row */}
-        <div
-          style={{
-            display: "flex",
-            gap: 36,
-            marginTop: 60,
-            flexWrap: "wrap",
-          }}
-        >
-          {STATS.map((s) => (
-            <div key={s.label}>
-              <p
-                style={{
-                  fontSize: "clamp(24px, 3vw, 32px)",
-                  fontWeight: 800,
-                  letterSpacing: "-0.03em",
-                  color: "var(--text-primary)",
-                  margin: 0,
-                  fontFamily: "'Syne', sans-serif",
-                }}
-              >
-                {s.n}
-              </p>
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "var(--text-muted)",
-                  margin: "3px 0 0",
-                  fontWeight: 500,
-                }}
-              >
-                {s.label}
+        {/* Stats */}
+        <div style={{
+          display: "grid", gridTemplateColumns: "repeat(4,1fr)",
+          maxWidth: 540,
+          border: "1px solid var(--border)", borderRadius: 14,
+          overflow: "hidden", animation: "fadeUp .6s ease .4s both",
+        }}>
+          {STATS.map((s, i) => (
+            <div key={s.l} style={{
+              padding: "16px 14px", textAlign: "center",
+              background: "var(--card)",
+              borderRight: i < 3 ? "1px solid var(--border)" : "none",
+            }}>
+              <p style={{
+                fontSize: "clamp(15px,2vw,22px)", fontWeight: 900,
+                color: "var(--accent)", margin: 0, letterSpacing: "-0.04em",
+                fontFamily: "'JetBrains Mono', monospace",
+              }}>{s.n}</p>
+              <p style={{ fontSize: 9, color: "var(--text3)", margin: "4px 0 0", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                {s.l}
               </p>
             </div>
           ))}

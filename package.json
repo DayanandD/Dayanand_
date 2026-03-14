@@ -1,15 +1,15 @@
 {
   "name": "dayanand-portfolio",
   "private": true,
-  "version": "1.0.0",
+  "version": "3.0.0",
   "type": "module",
   "homepage": "https://DayanandD.github.io/Dayanand_/",
-   "scripts": {
+  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "node deploy.cjs"
   },
   "dependencies": {
     "react": "^18.3.0",
