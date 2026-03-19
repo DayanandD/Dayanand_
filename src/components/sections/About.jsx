@@ -1,32 +1,33 @@
 import { useState } from "react";
 import { useInView } from "../../hooks/index.js";
 import { Fade, SectionHead } from "../ui/index.jsx";
+import { backendImg, databaseImg, responsiveImg, toolsImg } from "../../assets/index.js";
 
-/* ── About capability cards using uploaded images ── */
+/* ── About capability cards ── */
 const CARDS = [
   {
-    img:   "/assets/backend.png",
+    img:   backendImg,
     color: "#7c6fff",
     title: "Backend",
     sub:   ".NET 8 · Clean Architecture · REST APIs",
     desc:  "Enterprise .NET 8 APIs with Clean Architecture, Dapper, and JWT security. 0.187ms average response in production.",
   },
   {
-    img:   "/assets/responsive-design.png",
+    img:   responsiveImg,
     color: "#00c8ff",
     title: "Frontend",
     sub:   "React · Redux Toolkit · Material UI",
     desc:  "High-performance UIs with React, Redux Toolkit, and Material UI. Mobile-first responsive design on every project.",
   },
   {
-    img:   "/assets/database.png",
+    img:   databaseImg,
     color: "#00e5a0",
     title: "Database",
     sub:   "PostgreSQL · SQL Server · Dapper",
     desc:  "Optimised PostgreSQL and SQL Server schemas with UUID identifiers — 35% faster data retrieval in production.",
   },
   {
-    img:   "/assets/tools.png",
+    img:   toolsImg,
     color: "#ffb547",
     title: "Tools & DevOps",
     sub:   "IIS · Git · Zoho Sprints · Postman",
@@ -58,25 +59,18 @@ function AboutCard({ c, delay, vis }) {
           transition: "border-color .25s, background .25s, transform .28s, box-shadow .28s",
         }}
       >
-        {/* Image */}
-        <div style={{
-          width: 56, height: 56,
-          borderRadius: 14,
-          // background: c.color + "15",
-          mixBlendMode: "screen", 
-          border: `1px solid ${c.color}25`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          marginBottom: 14, overflow: "hidden",
-          transform: hov ? "scale(1.08) rotate(-3deg)" : "scale(1) rotate(0deg)",
-          transition: "transform .35s cubic-bezier(.34,1.56,.64,1)",
-        }}>
+        {/* Image — imported via Vite so path is always correct */}
+        <div style={{ marginBottom: 14 }}>
           <img
             src={c.img}
             alt={c.title}
             style={{
-              width: 36, height: 36,
+              width: 56,
+              height: 56,
               objectFit: "contain",
-              filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.3))",
+              transform: hov ? "scale(1.08) rotate(-3deg)" : "scale(1) rotate(0deg)",
+              transition: "transform .35s cubic-bezier(.34,1.56,.64,1)",
+              filter: `drop-shadow(0 0 10px ${c.color}50)`,
             }}
           />
         </div>
@@ -138,7 +132,7 @@ export default function About() {
             </div>
           </Fade>
 
-          {/* Cards column — 2×2 grid */}
+          {/* Cards — 2×2 grid */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             {CARDS.map((c, i) => (
               <AboutCard key={c.title} c={c} delay={200 + i * 90} vis={vis} />

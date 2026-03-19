@@ -45,8 +45,12 @@ const TECH_DESC = {
 };
 
 /* ── Tech logo/letter renderer ── */
-function TechIcon({ skill, size = 44, hov = false }) {
+function TechIcon({ skill, size = 44, hov = false, blend = false }) {
   const [failed, setFailed] = useState(false);
+
+  // Detect if this is a custom uploaded image (black bg) that needs blend mode
+  const isCustomAsset = skill.logo && skill.logo.includes("/assets/");
+  const needsBlend = false;
 
   if (skill.logo && !failed) {
     return (
@@ -55,7 +59,10 @@ function TechIcon({ skill, size = 44, hov = false }) {
         alt={skill.name}
         style={{
           width: size, height: size, objectFit: "contain",
-          filter: hov ? "none" : "grayscale(15%)",
+          mixBlendMode: "normal",
+          filter: needsBlend
+            ? `drop-shadow(0 0 6px ${skill.color || "#7c6fff"}50)`
+            : (hov ? "none" : "grayscale(15%)"),
           transform: hov ? "scale(1.12)" : "scale(1)",
           transition: "transform .3s cubic-bezier(.34,1.56,.64,1), filter .25s",
         }}
@@ -226,21 +233,28 @@ function CatCard({ cat, delay, vis }) {
       }}
     >
       {/* Category icon */}
-      <div style={{
-        width: 68, height: 68, borderRadius: 18,
-        // background: cat.color + "18",
-        mixBlendMode: "screen",
-        border: `1px solid ${cat.color}30`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        marginBottom: 18, fontSize: 28, overflow: "hidden",
-        transform: hov ? "scale(1.08) rotate(-4deg)" : "scale(1) rotate(0deg)",
-        transition: "transform .35s cubic-bezier(.34,1.56,.64,1)",
-        boxShadow: hov ? `0 8px 24px -6px ${cat.color}30` : "none",
-      }}>
+      <div style={{ marginBottom: 18 }}>
         {cat.img ? (
-          <img src={cat.img} alt={cat.name} style={{ width: 44, height: 44, objectFit: "contain", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.3))" }} />
+          <img
+            src={cat.img}
+            alt={cat.name}
+            style={{
+              width: 68, height: 68,
+              objectFit: "contain",
+              transform: hov ? "scale(1.1) rotate(-4deg)" : "scale(1) rotate(0deg)",
+              transition: "transform .35s cubic-bezier(.34,1.56,.64,1)",
+              filter: `drop-shadow(0 0 12px ${cat.color}60)`,
+            }}
+          />
         ) : (
-          <span>{cat.icon}</span>
+          <div style={{
+            width: 68, height: 68, borderRadius: 18,
+            background: cat.color + "18", border: `1px solid ${cat.color}30`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 28,
+            transform: hov ? "scale(1.08) rotate(-4deg)" : "scale(1) rotate(0deg)",
+            transition: "transform .35s cubic-bezier(.34,1.56,.64,1)",
+          }}>{cat.icon}</div>
         )}
       </div>
 
@@ -265,14 +279,19 @@ function CatCard({ cat, delay, vis }) {
               width: 32, height: 32,
               display: "flex", alignItems: "center", justifyContent: "center",
               borderRadius: 7,
-              background: "var(--bg3)",
-              border: "1px solid var(--border)",
+              background: (sk.logo && (sk.logo.includes("assets") || sk.logo.endsWith(".png") || sk.logo.endsWith(".svg")))
+                ? "transparent"
+                : "var(--bg3)",
+              border: (sk.logo && sk.logo.includes("assets"))
+                ? "none"
+                : "1px solid var(--border)",
             }}
           >
             <TechIcon
               skill={{ ...sk, color: sk.color || cat.color }}
               size={22}
               hov={false}
+              blend={true}
             />
           </div>
         ))}

@@ -1,3 +1,5 @@
+import { backendImg, databaseImg, hangfireImg, jwtImg, responsiveImg, serilogImg, toolsImg } from "../assets/index.js";
+
 export const NAV = [
   { id: "hero",       label: "Home"       },
   { id: "about",      label: "About"      },
@@ -24,7 +26,7 @@ export const SKILL_CATS = [
     name: "Backend",
     color: "#7c6fff",
     icon: "⬡",
-    img: "/assets/backend.png",
+    img: backendImg,
     skills: [
       { name: ".NET 8 / Core",       logo: `${D}/dotnetcore/dotnetcore-original.svg` },
       { name: "ASP.NET Web API",     logo: `${D}/dot-net/dot-net-original.svg` },
@@ -32,18 +34,18 @@ export const SKILL_CATS = [
       { name: "Clean Architecture",  logo: null, letter: "CA", color: "#7c6fff" },
       { name: "Dapper",              logo: null, letter: "D",  color: "#a78bfa" },
       { name: "Entity Framework",    logo: null, letter: "EF", color: "#7c6fff" },
-      { name: "JWT + RBAC",          logo: "/assets/jwt-logo.svg", letter: "J", color: "#6d55ff" },
+      { name: "JWT + RBAC",          logo: jwtImg, letter: "J", color: "#6d55ff" },
       { name: "SignalR",             logo: null, letter: "S",  color: "#7c6fff" },
-      { name: "Hangfire",            logo: "/assets/hangfire.png", letter: "HF", color: "#a78bfa" },
+      { name: "Hangfire",            logo: hangfireImg, letter: "HF", color: "#a78bfa" },
       { name: "AutoMapper",          logo: null, letter: "AM", color: "#7c6fff" },
-      { name: "Serilog",             logo: "/assets/serilogs.png", letter: "SL", color: "#6d55ff" },
+      { name: "Serilog",             logo: serilogImg, letter: "SL", color: "#6d55ff" },
     ],
   },
   {
     name: "Frontend",
     color: "#00c8ff",
     icon: "◈",
-    img: "/assets/responsive-design.png",
+    img: responsiveImg,
     skills: [
       { name: "React",          logo: `${D}/react/react-original.svg` },
       { name: "Redux Toolkit",  logo: `${D}/redux/redux-original.svg` },
@@ -61,7 +63,7 @@ export const SKILL_CATS = [
     name: "Database",
     color: "#00e5a0",
     icon: "◉",
-    img: "/assets/database.png",
+    img: databaseImg,
     skills: [
       { name: "PostgreSQL",  logo: `${D}/postgresql/postgresql-original.svg` },
       { name: "SQL Server",  logo: `${S}/303229/microsoft-sql-server-logo.svg` },
@@ -75,7 +77,7 @@ export const SKILL_CATS = [
     name: "Tools & Cloud",
     color: "#ffb547",
     icon: "◎",
-    img: "/assets/tools.png",
+    img: toolsImg,
     skills: [
       { name: "Git",           logo: `${V}/git-scm/git-scm-icon.svg` },
       { name: "GitHub",        logo: `${D}/github/github-original.svg` },
