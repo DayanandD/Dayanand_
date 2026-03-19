@@ -228,15 +228,20 @@ function CatCard({ cat, delay, vis }) {
       {/* Category icon */}
       <div style={{
         width: 68, height: 68, borderRadius: 18,
-        background: cat.color + "18",
+        // background: cat.color + "18",
+        mixBlendMode: "screen",
         border: `1px solid ${cat.color}30`,
         display: "flex", alignItems: "center", justifyContent: "center",
-        marginBottom: 18, fontSize: 28,
+        marginBottom: 18, fontSize: 28, overflow: "hidden",
         transform: hov ? "scale(1.08) rotate(-4deg)" : "scale(1) rotate(0deg)",
         transition: "transform .35s cubic-bezier(.34,1.56,.64,1)",
         boxShadow: hov ? `0 8px 24px -6px ${cat.color}30` : "none",
       }}>
-        {cat.icon}
+        {cat.img ? (
+          <img src={cat.img} alt={cat.name} style={{ width: 44, height: 44, objectFit: "contain", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.3))" }} />
+        ) : (
+          <span>{cat.icon}</span>
+        )}
       </div>
 
       <h3 style={{ fontSize: 16, fontWeight: 800, color: "var(--text)", margin: "0 0 5px", letterSpacing: "-0.02em" }}>
